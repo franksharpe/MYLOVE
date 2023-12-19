@@ -31,11 +31,85 @@
             margin-bottom: 20px;
             color: #555;
         }
+        #clock {
+            font-size: 20px;
+        }
+      
+        #box {
+            width: 300px;
+            height: 150px;
+            background-color: #3498db;
+            color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        #yes, #no {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px;
+            background-color: #2ecc71;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        #no:hover {
+            transform: translateX(200px) translateY(0); /* Adjust the values as needed */
+        }
     </style>
+
+<script>
+    function updateClock() {
+        // Set the target date
+        const targetDate = new Date("May 6, 2023 00:00:00").getTime();
+
+        // Get the current date and time
+        const currentDate = new Date().getTime();
+
+        // Calculate the time difference
+        const timeDifference = currentDate - targetDate;
+
+        // Calculate days, hours, minutes, and seconds
+        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+        // Display the elapsed time
+        const clockElement = document.getElementById("clock");
+        clockElement.innerHTML = `Since 6th of may: ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+    }
+
+    // Update the clock every second
+    setInterval(updateClock, 1000);
+
+    // Initial update
+    updateClock();
+
+    function moveNo() {
+            // Get the 'No' button element
+            const noButton = document.getElementById("no");
+
+            // Generate new coordinates for the 'No' button
+            const newX = Math.random() * (window.innerWidth - noButton.offsetWidth);
+            const newY = Math.random() * (window.innerHeight - noButton.offsetHeight);
+
+            // Move the 'No' button to the new coordinates
+            noButton.style.transform = `translate(${newX}px, ${newY}px)`;
+        }
+</script>
 </head>
 
 <body>
     <h1>I Love You</h1>
+    <br>
+    <p>since we have been together</p>
+    <div id="clock"></div>
 
     <h2>Please Forgive Me</h2>
 
@@ -109,7 +183,7 @@
         even if you have moved on, even if it meant selling everything I have. 
         I love you; I said it first to you, and I meant it. And when you 
         said 143 to me back, OMG, my heart raced, and I was the happiest person 
-        you could be, and I still am because I'm still with you or hope <br>
+        you could be, and I still am because I'm still with you or hope 
         to be if you would please forgive me. <br><br>I'm sorry.</p>
     <br>
     <img src="1 (9).jpg" height="400px" width="300px">
@@ -172,16 +246,15 @@
         I'll die if I can't have you. I love you so much to the moon and back.
         <br>
         To<br> My Ella
-        <br>My otter<br>
-        My git<br>
-        My slag<br>
-        My wife<br>
-        My life<Br>
-        My other half<br>
-        MY GIRLFREIND<Br>
         <br>
         (One day hopefully Mrs. Sharpe)</h1>
 </body>
+
+<div id="box" onclick="moveNo()" align="center">
+    Will you go out with me?<br>
+    <button id="yes" onclick="alert('Great!')">Yes</button>
+    <button id="no" onclick="moveNo()">No</button>
+</div>
 
 </html>
 
